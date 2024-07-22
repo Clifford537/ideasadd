@@ -1,46 +1,46 @@
--- Create users table with a unique username
+-- Create users table
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    country VARCHAR(50)
+    country VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create ideas table with user_id as a foreign key
+-- Create ideas table
 CREATE TABLE ideas (
     idea_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    country VARCHAR(50),
-    problem_heading VARCHAR(100),
-    description TEXT,
+    user_id INT NOT NULL,
+    problem_heading VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
     possible_solution TEXT,
     suggested_tools TEXT,
     impact_on_economy TEXT,
     revenue_generation TEXT,
     stakeholders TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
--- Create comments table with user_id and idea_id as foreign keys
+-- Create comments table
 CREATE TABLE comments (
     comment_id INT AUTO_INCREMENT PRIMARY KEY,
-    idea_id INT,
-    user_id INT,
-    comment_text TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (idea_id) REFERENCES ideas(idea_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    idea_id INT NOT NULL,
+    user_id INT NOT NULL,
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idea_id) REFERENCES ideas(idea_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
--- Create likes table with user_id and idea_id as foreign keys
+-- Create likes table
 CREATE TABLE likes (
     like_id INT AUTO_INCREMENT PRIMARY KEY,
-    idea_id INT,
-    user_id INT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (idea_id) REFERENCES ideas(idea_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    idea_id INT NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY (idea_id, user_id),
+    FOREIGN KEY (idea_id) REFERENCES ideas(idea_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
