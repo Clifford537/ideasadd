@@ -45,12 +45,13 @@ $country_list = fetch_african_countries();
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             max-width: 500px;
-            width: 100%;
+            width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .register-container h2 {
             margin-bottom: 1.5rem;
             font-weight: bold;
+            text-align: center;
         }
         .form-label {
             font-weight: bold;
@@ -63,19 +64,34 @@ $country_list = fetch_african_countries();
             border-color: #007bff;
             box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
         }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
         .btn-primary {
-            background-color: #0056b3;
-            border-color: #0056b3;
+            background-color: #4ca1af;
+            border-color: #4ca1af;
             border-radius: 8px;
             padding: 0.5rem 1.5rem;
             font-size: 1rem;
-            margin-right:30%;
-            margin-left:30%;
-            max-width:130px;
+            width: 48%;
         }
         .btn-primary:hover {
-            background-color: #004494;
-            border-color: #003d79;
+            background-color: #357f89;
+            border-color: #357f89;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border-radius: 8px;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            width: 48%;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
         }
         .alert {
             margin-bottom: 1rem;
@@ -91,12 +107,19 @@ $country_list = fetch_african_countries();
             .register-container {
                 padding: 1rem;
             }
+            .btn-container {
+                flex-direction: column;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="register-container">
-        <h2 class="text-center">Register</h2>
+        <h2>Register</h2>
         <?php if ($success_message): ?>
             <div class="alert alert-success" role="alert">
                 <?php echo $success_message; ?>
@@ -124,6 +147,10 @@ $country_list = fetch_african_countries();
                 </div>
             </div>
             <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
                 <select id="country" name="country" class="form-select" required>
                     <option value="" disabled selected>Select your country</option>
@@ -132,7 +159,10 @@ $country_list = fetch_african_countries();
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Register</button>
+            <div class="btn-container">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <a href="../index" class="btn btn-secondary">Home</a>
+            </div>
         </form>
         <div class="mt-3 text-center">
             <a href="login.php" class="text-light">Already have an account? Login here</a>

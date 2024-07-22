@@ -27,10 +27,11 @@ unset($_SESSION['login_error']);
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             max-width: 400px;
-            width: 100%;
+            width: 90%;
         }
         .login-container h2 {
             margin-bottom: 1.5rem;
+            text-align: center;
         }
         .form-label {
             font-weight: bold;
@@ -38,11 +39,57 @@ unset($_SESSION['login_error']);
         .alert {
             margin-bottom: 1rem;
         }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .btn-primary, .btn-secondary {
+            width: 48%;
+            border: none;
+        }
+        .btn-primary {
+            background-color: #4ca1af;
+        }
+        .btn-primary:hover {
+            background-color: #357f89;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .register-link {
+            color: #4ca1af;
+        }
+        .register-link:hover {
+            color: #357f89;
+        }
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 1rem;
+                max-width: 300px;
+            }
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+            .form-label {
+                font-size: 0.9rem;
+            }
+            .btn-container {
+                flex-direction: column;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2 class="text-center">Login</h2>
+        <h2>Login</h2>
         <?php if ($login_error): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo $login_error; ?>
@@ -57,10 +104,13 @@ unset($_SESSION['login_error']);
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary text-center w-50">Login</button>
+            <div class="btn-container">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="../index" class="btn btn-secondary">Home</a>
+            </div>
         </form>
         <div class="mt-3 text-center">
-            <a href="register" class="text-light">Don't have an account? Register here</a>
+            <a href="register" class="register-link">Don't have an account? Register here</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

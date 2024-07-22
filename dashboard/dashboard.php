@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch user details and ideas from database
+// Fetch user details and all ideas from database
 try {
     // Fetch username
     $stmt = $conn->prepare("SELECT username FROM users WHERE user_id = :user_id");
@@ -19,9 +19,8 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $username = htmlspecialchars($user['username']);
 
-    // Fetch user ideas
-    $stmt = $conn->prepare("SELECT * FROM ideas WHERE user_id = :user_id ORDER BY idea_id DESC");
-    $stmt->bindParam(':user_id', $user_id);
+    // Fetch all ideas
+    $stmt = $conn->prepare("SELECT ideas.*, users.username FROM ideas JOIN users ON ideas.user_id = users.user_id ORDER BY ideas.idea_id DESC");
     $stmt->execute();
     $ideas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -119,7 +118,7 @@ try {
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h1 class="mb-4">Welcome, <?php echo $username; ?>!</h1>
+        <h3 class="mb-4">Welcome, <?php echo $username; ?>! these are available ideas</h1>
         <?php if (isset($error_message)): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo htmlspecialchars($error_message); ?>
@@ -133,6 +132,7 @@ try {
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($idea['problem_heading']); ?></h5>
                                 <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 100)); ?>...</p>
+                                <p class="card-text"><small class="text-muted">By <?php echo htmlspecialchars($idea['username']); ?></small></p>
                                 <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn">Read More</a>
                             </div>
                         </div>
