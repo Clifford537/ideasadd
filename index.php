@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ideas Platform - Collecting and Solving Problems Facing African Countries with Technology">
     <meta name="keywords" content="Ideas, Technology, Africa, Problem Solving, Innovation, Platform">
-    <meta name="author" content="Clifford Mukosh">>
+    <meta name="author" content="Clifford Mukosh">
     <title>Welcome to Ideas Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
