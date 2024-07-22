@@ -110,6 +110,16 @@ $country_list = fetch_african_countries();
             .register-container {
                 padding: 1rem;
                 max-width: 90%;
+                font-size: 0.9rem;
+            }
+            .register-container h2 {
+                font-size: 1.2rem;
+            }
+            .form-control, .form-select {
+                font-size: 0.9rem;
+            }
+            .password-info {
+                font-size: 0.8rem;
             }
             .btn-container {
                 flex-direction: row;
