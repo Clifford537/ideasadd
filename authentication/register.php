@@ -47,7 +47,6 @@ $country_list = fetch_african_countries();
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             max-width: 400px;
             width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .register-container h2 {
             margin-bottom: 1rem;
@@ -71,29 +70,24 @@ $country_list = fetch_african_countries();
             gap: 10px;
             margin-top: 1rem;
         }
-        .btn-primary {
-            background-color: #4ca1af;
-            border-color: #4ca1af;
+        .btn-primary, .btn-secondary {
+            border: none;
             border-radius: 8px;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1rem;
             font-size: 1rem;
             flex: 1;
+        }
+        .btn-primary {
+            background-color: #4ca1af;
         }
         .btn-primary:hover {
             background-color: #357f89;
-            border-color: #357f89;
         }
         .btn-secondary {
             background-color: #6c757d;
-            border-color: #6c757d;
-            border-radius: 8px;
-            padding: 0.5rem 1.5rem;
-            font-size: 1rem;
-            flex: 1;
         }
         .btn-secondary:hover {
             background-color: #5a6268;
-            border-color: #5a6268;
         }
         .alert {
             margin-bottom: 1rem;
