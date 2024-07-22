@@ -53,6 +53,21 @@
             font-size: 1rem;
             margin: 5px;
         }
+
+        /* Adjust font size for small devices */
+        @media (max-width: 576px) {
+            .content-container h1 {
+                font-size: 1.5rem;
+            }
+            .content-container p {
+                font-size: 0.9rem;
+            }
+            .btn-lg {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
         @media (min-width: 768px) {
             .content-container h1 {
                 font-size: 3rem;
