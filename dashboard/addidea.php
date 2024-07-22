@@ -92,40 +92,63 @@ unset($_SESSION['error_message']);
         <form action="addideaprocessform.php" method="POST">
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" id="country" name="country" required>
+                <select class="form-control" id="country" name="country" required>
+                    <option value="">Select a country</option>
+                </select>
             </div>
             <div class="mb-3">
-                <label for="problem_heading" class="form-label">Problem Heading</label>
-                <input type="text" class="form-control" id="problem_heading" name="problem_heading" required>
+                <label for="problem_heading" class="form-label">Problem Name</label>
+                <input type="text" class="form-control" id="problem_heading" name="problem_heading" placeholder="Enter the problem heading" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe the problem in detail" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="possible_solution" class="form-label">Possible Solution</label>
-                <textarea class="form-control" id="possible_solution" name="possible_solution" rows="4"></textarea>
+                <textarea class="form-control" id="possible_solution" name="possible_solution" rows="4" placeholder="Describe possible solutions"></textarea>
             </div>
             <div class="mb-3">
-                <label for="suggested_tools" class="form-label">Suggested Tools</label>
-                <textarea class="form-control" id="suggested_tools" name="suggested_tools" rows="4"></textarea>
+                <label for="suggested_tools" class="form-label">Suggested Tools/Development Technologies</label>
+                <textarea class="form-control" id="suggested_tools" name="suggested_tools" rows="4" placeholder="List any suggested tools"></textarea>
             </div>
             <div class="mb-3">
                 <label for="impact_on_economy" class="form-label">Impact on Economy</label>
-                <textarea class="form-control" id="impact_on_economy" name="impact_on_economy" rows="4"></textarea>
+                <textarea class="form-control" id="impact_on_economy" name="impact_on_economy" rows="4" placeholder="Explain the impact on the economy"></textarea>
             </div>
             <div class="mb-3">
-                <label for="revenue_generation" class="form-label">Revenue Generation</label>
-                <textarea class="form-control" id="revenue_generation" name="revenue_generation" rows="4"></textarea>
+                <label for="revenue_generation" class="form-label">Revenue Generation Methods</label>
+                <textarea class="form-control" id="revenue_generation" name="revenue_generation" rows="4" placeholder="Describe revenue generation aspects"></textarea>
             </div>
             <div class="mb-3">
                 <label for="stakeholders" class="form-label">Stakeholders</label>
-                <textarea class="form-control" id="stakeholders" name="stakeholders" rows="4"></textarea>
+                <textarea class="form-control" id="stakeholders" name="stakeholders" rows="4" placeholder="Identify potential stakeholders"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit Idea</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const countrySelect = document.getElementById('country');
+
+            fetch('https://restcountries.com/v3.1/all') // Replace with your API endpoint
+                .then(response => response.json())
+                .then(data => {
+                    // Filter African countries
+                    const africanCountries = data.filter(country => country.region === 'Africa');
+
+                    // Populate the select element
+                    africanCountries.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country.name.common;
+                        option.textContent = country.name.common;
+                        countrySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching country data:', error));
+        });
+    </script>
 </body>
 </html>

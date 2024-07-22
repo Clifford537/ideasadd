@@ -19,8 +19,38 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $username = htmlspecialchars($user['username']);
 
-    // Fetch all ideas
-    $stmt = $conn->prepare("SELECT ideas.*, users.username FROM ideas JOIN users ON ideas.user_id = users.user_id ORDER BY ideas.idea_id DESC");
+    // Fetch all ideas along with counts of likes and comments
+    $stmt = $conn->prepare("
+        SELECT 
+            ideas.*, 
+            users.username AS author_username,
+            COALESCE(like_counts.like_count, 0) AS like_count,
+            COALESCE(comment_counts.comment_count, 0) AS comment_count
+        FROM 
+            ideas
+        JOIN 
+            users ON ideas.user_id = users.user_id
+        LEFT JOIN (
+            SELECT 
+                idea_id, 
+                COUNT(*) AS like_count 
+            FROM 
+                likes 
+            GROUP BY 
+                idea_id
+        ) AS like_counts ON ideas.idea_id = like_counts.idea_id
+        LEFT JOIN (
+            SELECT 
+                idea_id, 
+                COUNT(*) AS comment_count 
+            FROM 
+                comments 
+            GROUP BY 
+                idea_id
+        ) AS comment_counts ON ideas.idea_id = comment_counts.idea_id
+        ORDER BY 
+            ideas.idea_id DESC
+    ");
     $stmt->execute();
     $ideas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -79,6 +109,10 @@ try {
             font-size: 1rem;
             color: #6c757d; /* Light grey text color */
         }
+        .card-footer {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 0 15px;
@@ -118,7 +152,7 @@ try {
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h3 class="mb-4">Welcome, <?php echo $username; ?>! these are available ideas</h1>
+        <h3 class="mb-4">Welcome, <?php echo $username; ?>! Here are the available ideas</h3>
         <?php if (isset($error_message)): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo htmlspecialchars($error_message); ?>
@@ -131,9 +165,13 @@ try {
                         <div class="card idea-card">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($idea['problem_heading']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 100)); ?>...</p>
-                                <p class="card-text"><small class="text-muted">By <?php echo htmlspecialchars($idea['username']); ?></small></p>
-                                <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn">Read More</a>
+                                <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 250)); ?>...</p>
+                                <p class="card-text"><small class="text-muted">By <?php echo htmlspecialchars($idea['author_username']); ?></small></p>
+                            </div>
+                            <div class="card-footer">
+                                <span class="badge bg-primary"><?php echo htmlspecialchars($idea['like_count']); ?> Likes</span>
+                                <span class="badge bg-secondary"><?php echo htmlspecialchars($idea['comment_count']); ?> Comments</span>
+                                <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn float-end">Read More</a>
                             </div>
                         </div>
                     </div>

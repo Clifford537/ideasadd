@@ -114,7 +114,7 @@ try {
             </div>
         <?php endif; ?>
         <?php if (empty($ideas)): ?>
-            <p>You have no ideas yet.</p>
+            <p>You have no ideas yet. start creating your ideas   <a class="nav-link" href="addidea"><i class="fas fa-plus-circle"></i> Add Idea</a> </p>
         <?php else: ?>
             <?php foreach ($ideas as $idea): ?>
                 <div class="card idea-card">
