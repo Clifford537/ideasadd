@@ -37,7 +37,7 @@
             background: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
-            max-width: 50%;
+            max-width: 80%;
             width: 90%;
         }
         .content-container h1 {
