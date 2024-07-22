@@ -1,5 +1,5 @@
 <?php
-
+/*
 $servername = "sql107.infinityfree.com";
 $username = "if0_36948684";
 $password = "rK71euqdiQms";
@@ -11,8 +11,8 @@ try {
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
+*/
 
-/*
 //local server db configurations
 $servername = "localhost";
 $username = "root";
@@ -25,5 +25,5 @@ try {
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-*/
+
 ?>
