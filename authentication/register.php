@@ -32,24 +32,26 @@ $country_list = fetch_african_countries();
     <style>
         body {
             background: linear-gradient(to right, #2c3e50, #4ca1af);
+            background-attachment: fixed;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         .register-container {
             background: rgba(0, 0, 0, 0.8);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            max-width: 400px;
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .register-container h2 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             font-weight: bold;
             text-align: center;
         }
@@ -67,6 +69,7 @@ $country_list = fetch_african_countries();
         .btn-container {
             display: flex;
             justify-content: space-between;
+            gap: 10px;
             margin-top: 1rem;
         }
         .btn-primary {
@@ -75,7 +78,7 @@ $country_list = fetch_african_countries();
             border-radius: 8px;
             padding: 0.5rem 1.5rem;
             font-size: 1rem;
-            width: 48%;
+            flex: 1;
         }
         .btn-primary:hover {
             background-color: #357f89;
@@ -87,7 +90,7 @@ $country_list = fetch_african_countries();
             border-radius: 8px;
             padding: 0.5rem 1.5rem;
             font-size: 1rem;
-            width: 48%;
+            flex: 1;
         }
         .btn-secondary:hover {
             background-color: #5a6268;
@@ -106,13 +109,10 @@ $country_list = fetch_african_countries();
         @media (max-width: 576px) {
             .register-container {
                 padding: 1rem;
+                max-width: 90%;
             }
             .btn-container {
-                flex-direction: column;
-            }
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                margin-bottom: 0.5rem;
+                flex-direction: row;
             }
         }
     </style>
@@ -161,7 +161,7 @@ $country_list = fetch_african_countries();
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-primary">Register</button>
-                <a href="../index" class="btn btn-secondary">Home</a>
+                <a href="index.php" class="btn btn-secondary">Home</a>
             </div>
         </form>
         <div class="mt-3 text-center">
