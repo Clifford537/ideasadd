@@ -1,0 +1,29 @@
+name: DEPLOY
+
+on:
+  push:
+    branches:
+      - main  # Deploy from the main branch
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Ensures Node.js 20 is used
+
+    - name: Parse DEPLOY secret
+      id: parse_deploy
+      run: |
+        echo "${{ secrets.DEPLOY }}" | while IFS= read -r line; do
+          echo "$line" >> $GITHUB_ENV
+        done
+
+    - name: Upload to InfinityFree
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0  # Ensures Node.js 20 is used
+      with:
+        server: ${{ env.FTP_SERVER }}
+        username: ${{ env.FTP_USERNAME }}
+        password: ${{ env.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: /htdocs/
