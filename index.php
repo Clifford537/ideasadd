@@ -108,7 +108,7 @@
             </a>  
         </div>
         <br>
-        <p>Hello User, kindly register to log in and submit your ideas</p>
+        <p>Hello user Login to view ideas and add your contributions</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
