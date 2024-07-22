@@ -44,11 +44,14 @@ unset($_SESSION['login_error']);
         .btn-container {
             display: flex;
             justify-content: space-between;
+            gap: 10px; /* Space between buttons */
             margin-top: 1rem;
         }
         .btn-primary, .btn-secondary {
-            border: none;
             flex: 1;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
         }
         .btn-primary {
             background-color: #4ca1af;
@@ -58,7 +61,6 @@ unset($_SESSION['login_error']);
         }
         .btn-secondary {
             background-color: #6c757d;
-            margin-left: 0.5rem;
         }
         .btn-secondary:hover {
             background-color: #5a6268;
@@ -81,11 +83,11 @@ unset($_SESSION['login_error']);
                 font-size: 0.9rem;
             }
             .btn-container {
-                flex-direction: column;
-                gap: 0.5rem;
+                flex-direction: row; /* Align buttons in a row */
+                gap: 10px; /* Adjust spacing between buttons */
             }
             .btn-primary, .btn-secondary {
-                width: 100%;
+                width: 48%; /* Adjust button width for better fit */
             }
         }
     </style>
