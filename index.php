@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ideas Platform - Collecting and Solving Problems Facing African Countries with Technology">
+    <meta name="keywords" content="Ideas, Technology, Africa, Problem Solving, Innovation, Platform">
+    <meta name="author" content="Clifford Mukosh">>
     <title>Welcome to Ideas Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -34,21 +37,21 @@
             background: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
-            max-width: 60%;
+            max-width: 80%;
             width: 90%;
         }
         .content-container h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
         .content-container p {
             font-size: 1rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .btn-lg {
             padding: 10px 20px;
             font-size: 1rem;
-            margin: 10px;
+            margin: 5px;
         }
         @media (min-width: 768px) {
             .content-container h1 {
@@ -90,7 +93,7 @@
             </a>  
         </div>
         <br>
-        <p>Hello User Kindly Register to login  and submit your ideas</p>
+        <p>Hello User, kindly register to log in and submit your ideas</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
