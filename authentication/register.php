@@ -38,7 +38,6 @@ $country_list = fetch_african_countries();
             justify-content: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden;
         }
         .register-container {
             background: rgba(0, 0, 0, 0.8);
@@ -47,6 +46,7 @@ $country_list = fetch_african_countries();
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             max-width: 400px;
             width: 90%;
+            overflow: auto; /* Allow scrolling if needed */
         }
         .register-container h2 {
             margin-bottom: 1rem;
@@ -164,11 +164,11 @@ $country_list = fetch_african_countries();
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-primary">Register</button>
-                <a href="index.php" class="btn btn-secondary">Home</a>
+                <a href="../index" class="btn btn-secondary">Home</a>
             </div>
         </form>
         <div class="mt-3 text-center">
-            <a href="login.php" class="text-light">Already have an account? Login here</a>
+            <a href="login" class="text-light">Already have an account? Login here</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
