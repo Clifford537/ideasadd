@@ -106,7 +106,7 @@ try {
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>No ideas found. <a href="addidea.php">Add your first idea</a></p>
+                    <p>No ideas found. <a href="addidea">Add your first idea</a></p>
                 <?php endif; ?>
             </main>
         </div>

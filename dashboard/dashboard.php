@@ -36,6 +36,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background: #f1f5f9; /* Light background color */
@@ -93,20 +94,23 @@ try {
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Idea Platform</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-lightbulb"></i> Idea Platform</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="addidea.php">Add Idea</a>
+                        <a class="nav-link" href="addidea"><i class="fas fa-plus-circle"></i> Add Idea</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="passwordchange.php">Change Password</a>
+                        <a class="nav-link" href="passwordchange"><i class="fas fa-key"></i> Change Password</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="manageideas.php">Manage My Ideas</a>
+                        <a class="nav-link" href="manageideas"><i class="fas fa-cogs"></i> Manage My Ideas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -129,16 +133,17 @@ try {
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($idea['problem_heading']); ?></h5>
                                 <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 100)); ?>...</p>
-                                <a href="readmore.php?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn">Read More</a>
+                                <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn">Read More</a>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>No ideas found. <a href="addidea.php">Add your first idea</a></p>
+                <p>No ideas found. <a href="addidea">Add your first idea</a></p>
             <?php endif; ?>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>

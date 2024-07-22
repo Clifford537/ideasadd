@@ -82,10 +82,10 @@
         <h1>Welcome to Ideas Platform</h1>
         <p>Collecting and Solving Problems Facing African Countries with Technology</p>
         <div class="buttons">
-            <a href="./authentication/login.php" class="btn btn-primary btn-lg">
+            <a href="./authentication/login" class="btn btn-primary btn-lg">
                 <i class="bi bi-box-arrow-in-right"></i> Login
             </a>
-            <a href="./authentication/register.php" class="btn btn-success btn-lg">
+            <a href="./authentication/register" class="btn btn-success btn-lg">
                 <i class="bi bi-person-plus"></i> Register
             </a>  
         </div>

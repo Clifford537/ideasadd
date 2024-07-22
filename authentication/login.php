@@ -60,7 +60,7 @@ unset($_SESSION['login_error']);
             <button type="submit" class="btn btn-primary text-center w-50">Login</button>
         </form>
         <div class="mt-3 text-center">
-            <a href="register.php" class="text-light">Don't have an account? Register here</a>
+            <a href="register" class="text-light">Don't have an account? Register here</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

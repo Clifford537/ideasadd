@@ -107,7 +107,7 @@ $country_list = fetch_african_countries();
                 <?php echo $error_message; ?>
             </div>
         <?php endif; ?>
-        <form action="registerprocessform.php" method="POST">
+        <form action="registerprocessform" method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>

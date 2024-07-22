@@ -7,11 +7,10 @@ CREATE TABLE users (
     country VARCHAR(50)
 );
 
--- Create ideas table with username as a foreign key
+-- Create ideas table with user_id as a foreign key
 CREATE TABLE ideas (
     idea_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    username VARCHAR(50),
     country VARCHAR(50),
     problem_heading VARCHAR(100),
     description TEXT,
@@ -22,6 +21,26 @@ CREATE TABLE ideas (
     stakeholders TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (username) REFERENCES users(username)
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Create comments table with user_id and idea_id as foreign keys
+CREATE TABLE comments (
+    comment_id INT AUTO_INCREMENT PRIMARY KEY,
+    idea_id INT,
+    user_id INT,
+    comment_text TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idea_id) REFERENCES ideas(idea_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Create likes table with user_id and idea_id as foreign keys
+CREATE TABLE likes (
+    like_id INT AUTO_INCREMENT PRIMARY KEY,
+    idea_id INT,
+    user_id INT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idea_id) REFERENCES ideas(idea_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

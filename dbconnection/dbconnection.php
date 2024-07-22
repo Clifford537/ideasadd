@@ -1,4 +1,5 @@
 <?php
+
 $servername = "sql107.infinityfree.com";
 $username = "if0_36948684";
 $password = "rK71euqdiQms";

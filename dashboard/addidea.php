@@ -18,31 +18,19 @@ unset($_SESSION['error_message']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Idea</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: #f1f5f9; /* Light background color */
-            margin-top: 60px; /* Space for fixed navbar */
+            background-color: #f4f7f6; /* Light background color */
         }
         .navbar {
-            background: #343a40; /* Dark grey background for navbar */
-        }
-        .navbar-brand {
-            color: #ffffff;
-            font-weight: bold;
-        }
-        .navbar-nav .nav-link {
-            color: #ffffff;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #adb5bd; /* Light grey on hover */
+            margin-bottom: 30px; /* Space between navbar and content */
         }
         .container {
-            max-width: 800px;
             background: #ffffff; /* White background for the form container */
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin-top: 20px; /* Ensure spacing from the fixed navbar */
         }
         .form-label {
             font-weight: bold;
@@ -55,60 +43,50 @@ unset($_SESSION['error_message']);
             background-color: #218838; /* Darker green on hover */
             border-color: #1e7e34;
         }
-        .alert {
-            margin-top: 20px;
+        .navbar-nav .nav-link {
+            font-weight: bold;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .navbar {
-                margin-bottom: 20px;
-            }
+        .navbar-brand {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Idea Platform</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-lightbulb"></i> Idea Management</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="addidea.php">Add Idea</a>
+                        <a class="nav-link" href="addidea.php"><i class="fas fa-plus-circle"></i> Add Idea</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="passwordchange.php">Change Password</a>
+                        <a class="nav-link" href="account.php"><i class="fas fa-user-cog"></i> Account Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="manageideas.php">Manage My Ideas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
+                        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container mt-5">
         <h2 class="mb-4">Add a New Idea</h2>
         <?php if ($success_message): ?>
             <div class="alert alert-success" role="alert">
-                <?php echo htmlspecialchars($success_message); ?>
+                <?php echo $success_message; ?>
             </div>
         <?php endif; ?>
         <?php if ($error_message): ?>
             <div class="alert alert-danger" role="alert">
-                <?php echo htmlspecialchars($error_message); ?>
+                <?php echo $error_message; ?>
             </div>
         <?php endif; ?>
         <form action="addideaprocessform.php" method="POST">
@@ -148,5 +126,6 @@ unset($_SESSION['error_message']);
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>
