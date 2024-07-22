@@ -97,8 +97,8 @@
         </div>
     </div>
     <div class="content-container">
-        <h1>Welcome to Ideas Platform</h1>
-        <p>Collecting and Solving Problems Facing African Countries with Technology</p>
+        <h1>Write your next Big solution</h1>
+        <p>Bringing a solution to Problems Facing African Countries with Technology from politics ,sports, econmy ,corruption and many more..</p>
         <div class="buttons">
             <a href="./authentication/login" class="btn btn-primary btn-lg">
                 <i class="bi bi-box-arrow-in-right"></i> Login
