@@ -32,7 +32,6 @@ $country_list = fetch_african_countries();
     <style>
         body {
             background: linear-gradient(to right, #2c3e50, #4ca1af);
-            background-attachment: fixed;
             color: white;
             display: flex;
             align-items: center;
