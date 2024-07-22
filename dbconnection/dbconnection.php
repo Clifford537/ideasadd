@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ideas";
+$servername = "sql107.infinityfree.com";
+$username = "if0_36948684";
+$password = "rK71euqdiQms ";
+$dbname = "if0_36948684_ideas";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
