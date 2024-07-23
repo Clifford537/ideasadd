@@ -143,10 +143,10 @@ try {
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Smaller box shadow */
         }
         .card-title {
-            font-size: 3rem; /* Larger font size for card titles on small screens */
+            font-size: 5rem; /* Larger font size for card titles on small screens */
         }
         .card-text {
-            font-size: 3rem; 
+            font-size: 4rem; 
              color: black;/* Larger font size for card text on small screens */
         }
         .card-footer {
