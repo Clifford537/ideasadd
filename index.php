@@ -93,6 +93,7 @@
         .modal-body {
             color: green; /* Styling the modal text to be blue */
             border-radius:30px;
+            font-weight:bold;
         }
     </style>
 </head>
@@ -138,10 +139,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h3 style="color: grey; font-weight: bold;">What does IdeasPlartform do 🤔?</h3>
+                    <h3 style="color: grey; font-weight: bold;">About us</h3>
                     <p>Ideas Platform is dedicated to solving problems facing African countries using technology. 
-                        Our mission is to find innovative solutions to issues ranging from politics, sports, economy, corruption, and more. Join us in our journey to make a significant impact through technology and collaboration.
-                    you are only required to write an idea you have in mind or a problem you have experienced in your country or any problem facing your country . </p>
+                        Our mission is to find innovative solutions to issues ranging from politics, sports, economy, corruption, and more.
+                    <b style="color: dark-green;font-size:17px;">you can collaborate and support by writing an idea you have in mind or a problem you have experienced in your country or any problem facing your country</b> .Join and collaborate with us to make an impact </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
