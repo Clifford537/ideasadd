@@ -235,7 +235,7 @@ try {
                         <div class="card idea-card">
                             <div class="card-body">
                                 <h5 style="background: linear-gradient(to right, #FF6F61, #FF9A8B);-webkit-background-clip: text;-webkit-text-fill-color: transparent;" class="card-title"><?php echo htmlspecialchars($idea['problem_heading']); ?> <p class="card-text"><small class="text-muted"><i class="fas fa-user icon" style="color:orange;"></i>@<?php echo htmlspecialchars($idea['author_username']); ?></small></p></h5>
-                                <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 100)); ?>...</p>
+                                <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 150)); ?>...</p>
                                
                             </div>
                             <div class="card-footer">
