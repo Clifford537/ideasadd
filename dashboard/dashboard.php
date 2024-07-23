@@ -143,22 +143,22 @@ try {
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller box shadow */
         }
         .card-title {
-            font-size: 1.525rem; /* Larger font size for card titles on small screens */
+            font-size: 2rem; /* Larger font size for card titles on small screens */
         }
         .card-text {
-            font-size: 1.2rem; /* Larger font size for card text on small screens */
+            font-size: 1.5rem; /* Larger font size for card text on small screens */
         }
         .card-footer {
-            font-size: 0.95rem; /* Font size for card footer on small screens */
+            font-size: 1.1rem; /* Font size for card footer on small screens */
         }
         .icon {
-            font-size: 0.95rem; /* Icon size on small screens */
+            font-size: 1.1rem; /* Icon size on small screens */
         }
         .badge {
-            font-size: 0.95rem; /* Badge text size on small screens */
+            font-size: 1.1rem; /* Badge text size on small screens */
         }
         .read-more-btn {
-            font-size: 0.975rem; /* Font size for 'Read More' button on small screens */
+            font-size: 1.3rem; /* Font size for 'Read More' button on small screens */
         }
     }
 
