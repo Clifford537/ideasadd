@@ -19,7 +19,6 @@ CREATE TABLE ideas (
     impact_on_economy TEXT,
     revenue_generation TEXT,
     stakeholders TEXT,
-    views INT DEFAULT 0, -- Column to track the number of views
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
@@ -45,3 +44,14 @@ CREATE TABLE likes (
     FOREIGN KEY (idea_id) REFERENCES ideas(idea_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
+ --  view table:
+ CREATE TABLE views (
+    view_id INT AUTO_INCREMENT PRIMARY KEY,
+    idea_id INT NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY (idea_id, user_id),
+    FOREIGN KEY (idea_id) REFERENCES ideas(idea_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+

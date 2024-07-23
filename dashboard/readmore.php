@@ -2,9 +2,9 @@
 session_start();
 require '../dbconnection/dbconnection.php';
 
-// Ensure the user is logged in
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
-    header('Location: login.php');
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../authentication/login');
     exit();
 }
 
@@ -26,11 +26,12 @@ if (isset($_GET['id'])) {
             exit();
         }
 
-        // Increment the view count
-        $stmt = $conn->prepare("UPDATE ideas SET views = views + 1 WHERE idea_id = :idea_id");
+        // Record the view if it hasn't been recorded for this user
+        $stmt = $conn->prepare("INSERT IGNORE INTO views (idea_id, user_id) VALUES (:idea_id, :user_id)");
         $stmt->bindParam(':idea_id', $idea_id);
+        $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
-        
+
         // Fetch comments for the idea
         $stmt = $conn->prepare("SELECT c.*, u.username FROM comments c JOIN users u ON c.user_id = u.user_id WHERE c.idea_id = :idea_id ORDER BY c.created_at DESC");
         $stmt->bindParam(':idea_id', $idea_id);
@@ -61,6 +62,7 @@ if (isset($_GET['id'])) {
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

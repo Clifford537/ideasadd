@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch user details and all ideas from database
+// Fetch user details and all ideas from the database
 try {
     // Fetch username
     $stmt = $conn->prepare("SELECT username FROM users WHERE user_id = :user_id");
@@ -26,7 +26,7 @@ try {
             users.username AS author_username,
             COALESCE(like_counts.like_count, 0) AS like_count,
             COALESCE(comment_counts.comment_count, 0) AS comment_count,
-            ideas.views AS view_count
+            COALESCE(view_counts.view_count, 0) AS view_count
         FROM 
             ideas
         JOIN 
@@ -49,6 +49,15 @@ try {
             GROUP BY 
                 idea_id
         ) AS comment_counts ON ideas.idea_id = comment_counts.idea_id
+        LEFT JOIN (
+            SELECT 
+                idea_id, 
+                COUNT(DISTINCT user_id) AS view_count 
+            FROM 
+                views 
+            GROUP BY 
+                idea_id
+        ) AS view_counts ON ideas.idea_id = view_counts.idea_id
         ORDER BY 
             ideas.idea_id DESC
     ");
@@ -162,7 +171,7 @@ try {
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h6 class="mb-4"><i class="fas fa-user icon"></i>Hi <?php echo $username; ?>! This platform allows you to write any idea or problem you ever faced or are facing in your country. <i class="fa-solid fa-wand-magic-sparkles"style="color:indigo;"></i></h6>
+        <h6 class="mb-4"><i class="fas fa-user icon"></i>Hi <?php echo $username; ?>! This platform allows you to write any idea or problem you ever faced or are facing in your country. <i class="fa-solid fa-wand-magic-sparkles" style="color:indigo;"></i></h6>
         <?php if (isset($error_message)): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo htmlspecialchars($error_message); ?>
@@ -174,15 +183,15 @@ try {
                     <div class="col-md-6 col-lg-4">
                         <div class="card idea-card">
                             <div class="card-body">
-                                <h5 style="background: linear-gradient(to right, #FF6F61, #FF9A8B);-webkit-background-clip: text;-webkit-text-fill-color: transparent;" class="card-title "><?php echo htmlspecialchars($idea['problem_heading']); ?></h5>
+                                <h5 style="background: linear-gradient(to right, #FF6F61, #FF9A8B);-webkit-background-clip: text;-webkit-text-fill-color: transparent;" class="card-title"><?php echo htmlspecialchars($idea['problem_heading']); ?></h5>
                                 <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 50)); ?>...</p>
                                 <p class="card-text"><small class="text-muted"><i class="fas fa-user icon" style="color:orange;"></i><?php echo htmlspecialchars($idea['author_username']); ?></small></p>
                             </div>
                             <div class="card-footer">
-                                <span class="badge" style="color:red;"><i class="fas fa-heart icon" style="color:indigo-400;"></i><?php echo htmlspecialchars($idea['like_count']); ?></span>
+                                <span class="badge" style="color:red;"><i class="fas fa-heart icon" style="color:indigo;"></i><?php echo htmlspecialchars($idea['like_count']); ?></span>
                                 <span class="badge" style="color:green;"><i class="fas fa-comment icon" style="color:green;"></i><?php echo htmlspecialchars($idea['comment_count']); ?></span>
                                 <span class="badge" style="color:blue;"><i class="fas fa-eye icon" style="color:blue;"></i><?php echo htmlspecialchars($idea['view_count']); ?></span>
-                                <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn float-end">Read More</a>
+                                <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn float-end" style="color:#DDA0DD;">Read More</a>
                             </div>
                         </div>
                     </div>
