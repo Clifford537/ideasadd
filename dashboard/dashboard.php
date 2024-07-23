@@ -152,6 +152,63 @@ try {
             font-size: 0.65rem; /* Smaller font size for card footer on very small screens */
         }
     }
+          /* Styles for small screens (e.g., mobile devices) */
+    @media (max-width: 576px) {
+        .container {
+            padding: 0 5px; /* Reduced padding for small screens */
+        }
+        .idea-card {
+            margin-bottom: 10px; /* Reduced margin for cards on small screens */
+            border-radius: 4px; /* Smaller border radius */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller box shadow */
+        }
+        .card-title {
+            font-size: 0.875rem; /* Smaller font size for card titles */
+        }
+        .card-text {
+            font-size: 0.75rem; /* Smaller font size for card text */
+        }
+        .card-footer {
+            font-size: 0.65rem; /* Smaller font size for card footer */
+        }
+        .icon {
+            font-size: 0.65rem; /* Smaller icon size */
+        }
+        .badge {
+            font-size: 0.65rem; /* Smaller badge text size */
+        }
+        .read-more-btn {
+            font-size: 0.75rem; /* Smaller font size for 'Read More' button */
+        }
+    }
+
+    /* Styles for very small screens (e.g., devices with width <= 360px) */
+    @media (max-width: 360px) {
+        .container {
+            padding: 0 2px; /* Minimized padding for very small screens */
+        }
+        .idea-card {
+            margin-bottom: 5px; /* Minimized margin for cards on very small screens */
+        }
+        .card-title {
+            font-size: 0.75rem; /* Even smaller font size for card titles */
+        }
+        .card-text {
+            font-size: 0.65rem; /* Even smaller font size for card text */
+        }
+        .card-footer {
+            font-size: 0.55rem; /* Even smaller font size for card footer */
+        }
+        .icon {
+            font-size: 0.65rem; /* Smaller icon size */
+        }
+        .badge {
+            font-size: 0.65rem; /* Smaller badge text size */
+        }
+        .read-more-btn {
+            font-size: 0.65rem; /* Smaller font size for 'Read More' button */
+        }
+    }
     </style>
 </head>
 <body>
