@@ -19,6 +19,7 @@ CREATE TABLE ideas (
     impact_on_economy TEXT,
     revenue_generation TEXT,
     stakeholders TEXT,
+    views INT DEFAULT 0, -- Column to track the number of views
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );

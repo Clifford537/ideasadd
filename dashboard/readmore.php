@@ -26,6 +26,11 @@ if (isset($_GET['id'])) {
             exit();
         }
 
+        // Increment the view count
+        $stmt = $conn->prepare("UPDATE ideas SET views = views + 1 WHERE idea_id = :idea_id");
+        $stmt->bindParam(':idea_id', $idea_id);
+        $stmt->execute();
+        
         // Fetch comments for the idea
         $stmt = $conn->prepare("SELECT c.*, u.username FROM comments c JOIN users u ON c.user_id = u.user_id WHERE c.idea_id = :idea_id ORDER BY c.created_at DESC");
         $stmt->bindParam(':idea_id', $idea_id);

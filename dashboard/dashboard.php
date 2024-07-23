@@ -4,7 +4,7 @@ require '../dbconnection/dbconnection.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../authentication/login.php');
+    header('Location: ../authentication/login');
     exit();
 }
 
@@ -19,13 +19,14 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $username = htmlspecialchars($user['username']);
 
-    // Fetch all ideas along with counts of likes and comments
+    // Fetch all ideas along with counts of likes, comments, and views
     $stmt = $conn->prepare("
         SELECT 
             ideas.*, 
             users.username AS author_username,
             COALESCE(like_counts.like_count, 0) AS like_count,
-            COALESCE(comment_counts.comment_count, 0) AS comment_count
+            COALESCE(comment_counts.comment_count, 0) AS comment_count,
+            ideas.views AS view_count
         FROM 
             ideas
         JOIN 
@@ -113,6 +114,15 @@ try {
             font-size: 0.875rem;
             color: #6c757d;
         }
+        .icon {
+            font-size: 0.75rem; /* Smaller icon size */
+            margin-right: 3px;
+        }
+        .badge {
+            font-size: 0.75rem; /* Smaller badge text */
+            background-color: transparent; /* Remove background color */
+            color: #6c757d; /* Grey color */
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 0 15px;
@@ -152,7 +162,7 @@ try {
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h6 class="mb-4"> Hi <?php echo $username; ?>! this plaform allows you to write any idea or problem you ever faced or facing your country it's a free platform feel free write your thoughts and contibute.</h6>
+        <h6 class="mb-4"><i class="fas fa-user icon"></i>Hi <?php echo $username; ?>! This platform allows you to write any idea or problem you ever faced or are facing in your country. <i class="fa-solid fa-wand-magic-sparkles"style="color:indigo;"></i></h6>
         <?php if (isset($error_message)): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo htmlspecialchars($error_message); ?>
@@ -164,13 +174,14 @@ try {
                     <div class="col-md-6 col-lg-4">
                         <div class="card idea-card">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($idea['problem_heading']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 250)); ?>...</p>
-                                <p class="card-text"><small class="text-muted">By <?php echo htmlspecialchars($idea['author_username']); ?></small></p>
+                                <h5 style="background: linear-gradient(to right, #FF6F61, #FF9A8B);-webkit-background-clip: text;-webkit-text-fill-color: transparent;" class="card-title "><?php echo htmlspecialchars($idea['problem_heading']); ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 50)); ?>...</p>
+                                <p class="card-text"><small class="text-muted"><i class="fas fa-user icon" style="color:orange;"></i><?php echo htmlspecialchars($idea['author_username']); ?></small></p>
                             </div>
                             <div class="card-footer">
-                                <span class="badge bg-primary"><?php echo htmlspecialchars($idea['like_count']); ?> Likes</span>
-                                <span class="badge bg-secondary"><?php echo htmlspecialchars($idea['comment_count']); ?> Comments</span>
+                                <span class="badge" style="color:red;"><i class="fas fa-heart icon" style="color:indigo-400;"></i><?php echo htmlspecialchars($idea['like_count']); ?></span>
+                                <span class="badge" style="color:green;"><i class="fas fa-comment icon" style="color:green;"></i><?php echo htmlspecialchars($idea['comment_count']); ?></span>
+                                <span class="badge" style="color:blue;"><i class="fas fa-eye icon" style="color:blue;"></i><?php echo htmlspecialchars($idea['view_count']); ?></span>
                                 <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn float-end">Read More</a>
                             </div>
                         </div>
