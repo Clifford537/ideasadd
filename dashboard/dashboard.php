@@ -220,7 +220,7 @@ try {
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h6 class="mb-3"><i class="fas fa-user icon"></i>Hi <?php echo $username; ?>! This platform allows you to write any idea or problem you ever faced or are facing in your country. <i class="fa-solid fa-wand-magic-sparkles" style="color:indigo;"></i></h6>
+        <h6 class="mb-4"><i class="fas fa-user icon"></i>Hi <?php echo $username; ?>! This platform allows you to write any idea or problem you ever faced or are facing in your country. <i class="fa-solid fa-wand-magic-sparkles" style="color:indigo;"></i></h6>
         <?php if (isset($error_message)): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo htmlspecialchars($error_message); ?>
@@ -232,8 +232,9 @@ try {
                     <div class="col-md-6 col-lg-4">
                         <div class="card idea-card">
                             <div class="card-body">
-                                <h5 style="background: linear-gradient(to right, #FF6F61, #FF9A8B);-webkit-background-clip: text;-webkit-text-fill-color: transparent;" class="card-title"><small class="text-muted"><i class="fas fa-user icon" style="color:orange;"></small><?php echo htmlspecialchars($idea['problem_heading']); ?><p class="card-text"></i><?php echo htmlspecialchars($idea['author_username']); ?></p></h5>
+                                <h5 style="background: linear-gradient(to right, #FF6F61, #FF9A8B);-webkit-background-clip: text;-webkit-text-fill-color: transparent;" class="card-title"><?php echo htmlspecialchars($idea['problem_heading']); ?> <p class="card-text"><small class="text-muted"><i class="fas fa-user icon" style="color:orange;"></i><?php echo htmlspecialchars($idea['author_username']); ?></small></p></h5>
                                 <p class="card-text"><?php echo htmlspecialchars(substr($idea['description'], 0, 50)); ?>...</p>
+                               
                             </div>
                             <div class="card-footer">
                                 <span class="badge" style="color:red;"><i class="fas fa-heart icon" style="color:indigo;"></i><?php echo htmlspecialchars($idea['like_count']); ?></span>
