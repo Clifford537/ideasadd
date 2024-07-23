@@ -135,12 +135,12 @@ try {
     /* Styles for small screens (e.g., mobile devices) */
     @media (max-width: 576px) {
         .container {
-            padding: 0 5px; /* Reduced padding for small screens */
+            padding: 0 10px; /* Reduced padding for small screens */
         }
         .idea-card {
-            margin-bottom: 10px; /* Reduced margin for cards on small screens */
-            border-radius: 4px; /* Smaller border radius */
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller box shadow */
+            margin-bottom: 15px; /* Reduced margin for cards on small screens */
+            border-radius: 5px; /* Smaller border radius */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Smaller box shadow */
         }
         .card-title {
             font-size: 2rem; /* Larger font size for card titles on small screens */
