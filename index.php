@@ -66,6 +66,10 @@
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }
+            .btn-learn-more {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
         }
 
         @media (min-width: 768px) {
@@ -80,6 +84,15 @@
                 padding: 15px 30px;
                 font-size: 1.2rem;
             }
+            .btn-learn-more {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        .modal-body {
+            color: green; /* Styling the modal text to be blue */
+            border-radius:30px;
         }
     </style>
 </head>
@@ -98,20 +111,45 @@
     </div>
     <div class="content-container">
         <h1>Write your next Big solution</h1>
-        <p>Bringing a solution to Problems Facing African Countries with Technology from politics ,sports, econmy ,corruption and many more..</p>
+        <p>Bringing a solution to Problems Facing African Countries with Technology from politics, sports, economy, corruption, and many more..</p>
         <div class="buttons">
             <a href="./authentication/login" class="btn btn-primary btn-lg">
                 <i class="bi bi-box-arrow-in-right"></i> Login
             </a>
             <a href="./authentication/register" class="btn btn-success btn-lg">
                 <i class="bi bi-person-plus"></i> Register
-            </a>  
+            </a>
         </div>
         <br>
         <p>Login to view ideas and add your contributions</p>
+        <div class="buttons">
+            <button type="button" class="btn btn-info btn-learn-more" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                <i class="bi bi-info-circle"></i> Learn More
+            </button>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+     <!-- About Us Modal -->
+     <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">About Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3 style="color: grey; font-weight: bold;">What does IdeasPlartform do 🤔?</h3>
+                    <p>Ideas Platform is dedicated to solving problems facing African countries using technology. 
+                        Our mission is to find innovative solutions to issues ranging from politics, sports, economy, corruption, and more. Join us in our journey to make a significant impact through technology and collaboration.
+                    you are only required to write an idea you have in mind or a problem you have experienced in your country or any problem facing your country . </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
