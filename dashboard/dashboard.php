@@ -146,7 +146,8 @@ try {
             font-size: 3rem; /* Larger font size for card titles on small screens */
         }
         .card-text {
-            font-size: 3rem; /* Larger font size for card text on small screens */
+            font-size: 3rem; 
+             color: black;/* Larger font size for card text on small screens */
         }
         .card-footer {
             font-size: 2rem; /* Font size for card footer on small screens */
@@ -174,7 +175,8 @@ try {
             font-size: 1rem; /* Font size for card titles on extra small screens */
         }
         .card-text {
-            font-size: 0.75rem; /* Font size for card text on extra small screens */
+            font-size: 0.75rem;
+           /* Font size for card text on extra small screens */
         }
         .card-footer {
             font-size: 0.65rem; /* Font size for card footer on extra small screens */
