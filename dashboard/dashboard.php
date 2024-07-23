@@ -152,7 +152,7 @@ try {
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h6 class="mb-4"> Hi <?php echo $username; ?> this plaform allows you to write any idea that you have in mind feel free to write your thoughts..</h6>
+        <h6 class="mb-4"> Hi <?php echo $username; ?>! this plaform allows you to write any idea or problem you ever faced or facing your country it's a free platform feel free write your thoughts and contibute.</h6>
         <?php if (isset($error_message)): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo htmlspecialchars($error_message); ?>
