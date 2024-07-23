@@ -132,14 +132,26 @@ try {
             background-color: transparent; /* Remove background color */
             color: #6c757d; /* Grey color */
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-            .navbar {
-                margin-bottom: 20px;
-            }
+        @media (max-width: 760px) { /* Adjustments for very small screens */
+        .container {
+            padding: 0 5px; /* Further reduced padding for very small screens */
         }
+        .navbar {
+            margin-bottom: 10px; /* Further reduced margin for navbar on very small screens */
+        }
+        .idea-card {
+            margin-bottom: 10px; /* Further reduced margin for cards on very small screens */
+        }
+        .card-title {
+            font-size: 0.875rem; /* Smaller font size for card titles on very small screens */
+        }
+        .card-text {
+            font-size: 0.75rem; /* Smaller font size for card text on very small screens */
+        }
+        .card-footer {
+            font-size: 0.65rem; /* Smaller font size for card footer on very small screens */
+        }
+    }
     </style>
 </head>
 <body>
@@ -191,7 +203,7 @@ try {
                                 <span class="badge" style="color:red;"><i class="fas fa-heart icon" style="color:indigo;"></i><?php echo htmlspecialchars($idea['like_count']); ?></span>
                                 <span class="badge" style="color:green;"><i class="fas fa-comment icon" style="color:green;"></i><?php echo htmlspecialchars($idea['comment_count']); ?></span>
                                 <span class="badge" style="color:blue;"><i class="fas fa-eye icon" style="color:blue;"></i><?php echo htmlspecialchars($idea['view_count']); ?></span>
-                                <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn float-end" style="color:#DDA0DD;">Read More</a>
+                                <a href="readmore?id=<?php echo $idea['idea_id']; ?>" class="read-more-btn float-end" style="color:#00BFF;">Read More</a>
                             </div>
                         </div>
                     </div>
