@@ -132,81 +132,92 @@ try {
             background-color: transparent; /* Remove background color */
             color: #6c757d; /* Grey color */
         }
-        @media (max-width: 760px) { /* Adjustments for very small screens */
+    /* Styles for small screens (e.g., mobile devices) */
+    @media (max-width: 760px) {
         .container {
-            padding: 0 5px; /* Further reduced padding for very small screens */
+            padding: 0 10px; /* Adjusted padding for small screens */
         }
         .navbar {
-            margin-bottom: 10px; /* Further reduced margin for navbar on very small screens */
+            margin-bottom: 10px; /* Reduced margin for navbar on small screens */
         }
         .idea-card {
-            margin-bottom: 10px; /* Further reduced margin for cards on very small screens */
-        }
-        .card-title {
-            font-size: 0.875rem; /* Smaller font size for card titles on very small screens */
-        }
-        .card-text {
-            font-size: 0.75rem; /* Smaller font size for card text on very small screens */
-        }
-        .card-footer {
-            font-size: 0.65rem; /* Smaller font size for card footer on very small screens */
-        }
-    }
-          /* Styles for small screens (e.g., mobile devices) */
-    @media (max-width: 576px) {
-        .container {
-            padding: 0 5px; /* Reduced padding for small screens */
-        }
-        .idea-card {
-            margin-bottom: 10px; /* Reduced margin for cards on small screens */
+            margin-bottom: 10px; /* Margin for cards on small screens */
             border-radius: 4px; /* Smaller border radius */
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller box shadow */
         }
         .card-title {
-            font-size: 0.875rem; /* Smaller font size for card titles */
+            font-size: 1rem; /* Increased font size for card titles on small screens */
         }
         .card-text {
-            font-size: 0.75rem; /* Smaller font size for card text */
+            font-size: 0.875rem; /* Increased font size for card text on small screens */
         }
         .card-footer {
-            font-size: 0.65rem; /* Smaller font size for card footer */
+            font-size: 0.75rem; /* Increased font size for card footer on small screens */
         }
         .icon {
-            font-size: 0.65rem; /* Smaller icon size */
+            font-size: 0.75rem; /* Icon size on small screens */
         }
         .badge {
-            font-size: 0.65rem; /* Smaller badge text size */
+            font-size: 0.75rem; /* Badge text size on small screens */
         }
         .read-more-btn {
-            font-size: 0.75rem; /* Smaller font size for 'Read More' button */
+            font-size: 0.875rem; /* Font size for 'Read More' button on small screens */
         }
     }
 
-    /* Styles for very small screens (e.g., devices with width <= 360px) */
-    @media (max-width: 360px) {
+    /* Styles for very small screens (e.g., devices with width <= 576px) */
+    @media (max-width: 576px) {
         .container {
-            padding: 0 2px; /* Minimized padding for very small screens */
+            padding: 0 5px; /* Further reduced padding for very small screens */
         }
         .idea-card {
-            margin-bottom: 5px; /* Minimized margin for cards on very small screens */
+            margin-bottom: 10px; /* Reduced margin for cards on very small screens */
         }
         .card-title {
-            font-size: 0.75rem; /* Even smaller font size for card titles */
+            font-size: 1.125rem; /* Larger font size for card titles */
         }
         .card-text {
-            font-size: 0.65rem; /* Even smaller font size for card text */
+            font-size: 0.875rem; /* Larger font size for card text */
         }
         .card-footer {
-            font-size: 0.55rem; /* Even smaller font size for card footer */
+            font-size: 0.75rem; /* Font size for card footer */
         }
         .icon {
-            font-size: 0.65rem; /* Smaller icon size */
+            font-size: 0.75rem; /* Icon size on very small screens */
         }
         .badge {
-            font-size: 0.65rem; /* Smaller badge text size */
+            font-size: 0.75rem; /* Badge text size on very small screens */
         }
         .read-more-btn {
-            font-size: 0.65rem; /* Smaller font size for 'Read More' button */
+            font-size: 0.875rem; /* Font size for 'Read More' button on very small screens */
+        }
+    }
+
+    /* Styles for extra small screens (e.g., devices with width <= 360px) */
+    @media (max-width: 360px) {
+        .container {
+            padding: 0 2px; /* Minimized padding for extra small screens */
+        }
+        .idea-card {
+            margin-bottom: 5px; /* Minimized margin for cards on extra small screens */
+        }
+        .card-title {
+            font-size: 1rem; /* Font size for card titles on extra small screens */
+        }
+        .card-text {
+            font-size: 0.75rem; /* Font size for card text on extra small screens */
+        }
+        .card-footer {
+            font-size: 0.65rem; /* Font size for card footer on extra small screens */
+        }
+        .icon {
+            font-size: 0.65rem; /* Smaller icon size on extra small screens */
+        }
+        .badge {
+            font-size: 0.65rem; /* Smaller badge text size on extra small screens */
+        }
+        .read-more-btn {
+            font-size: 0.75rem; /* Font size for 'Read More' button on extra small screens */
         }
     }
     </style>
