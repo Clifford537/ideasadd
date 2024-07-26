@@ -89,3 +89,11 @@ CREATE TABLE messages (
     FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
+CREATE TABLE typing_status (
+    user_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    typing BOOLEAN DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, receiver_id)
+);

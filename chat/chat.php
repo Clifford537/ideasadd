@@ -108,8 +108,23 @@ $conn = null;
         </form>
     </div>
 </div>
-
 <script>
+    // Function to fetch messages
+    function fetchMessages() {
+        fetch('fetch_messages.php?receiver_id=<?php echo $receiverId; ?>')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('chat-messages').innerHTML = data;
+            document.querySelector('.chat-messages').scrollTop = document.querySelector('.chat-messages').scrollHeight;
+        });
+    }
+
+    // Function to notify typing
+    function notifyTyping() {
+        fetch('notify_typing.php?receiver_id=<?php echo $receiverId; ?>', { method: 'POST' });
+    }
+
+    // Handle form submission
     document.getElementById('message-form').addEventListener('submit', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
@@ -123,16 +138,19 @@ $conn = null;
         });
     });
 
-    function fetchMessages() {
-        fetch('fetch_messages.php?receiver_id=<?php echo $receiverId; ?>')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('chat-messages').innerHTML = data;
-            document.querySelector('.chat-messages').scrollTop = document.querySelector('.chat-messages').scrollHeight;
-        });
-    }
+    // Handle typing detection
+    var typingTimeout;
+    document.querySelector('textarea').addEventListener('input', function() {
+        clearTimeout(typingTimeout);
+        notifyTyping();
+        typingTimeout = setTimeout(function() {
+            fetchMessages();
+        }, 5000);
+    });
 
-    setInterval(fetchMessages, 5000); // Fetch messages every 5 seconds
+    // Fetch messages every 5 seconds
+    setInterval(fetchMessages, 5000);
 </script>
+
 </body>
 </html>
