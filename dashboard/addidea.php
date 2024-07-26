@@ -64,7 +64,7 @@ unset($_SESSION['error_message']);
                         <a class="nav-link" href="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="addidea"><i class="fas fa-plus-circle"></i> Add Idea</a>
+                        <a class="nav-link" href="..chat/chat"><i class="fas fa-plus-circle"></i> Add chat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="manageideas"><i class="fas fa-user-cog"></i> Account Management</a>
