@@ -1,57 +1,14 @@
 <?php
 session_start();
-require '../dbconnection/dbconnection.php';
-
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../authentication/login');
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
+    header('Location: login.php');
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
-$receiverId = isset($_GET['receiver_id']) ? intval($_GET['receiver_id']) : 0;
-
-// Function to fetch messages
-function fetchMessages($user_id, $receiverId, $conn) {
-    $sql = "SELECT m.*, u1.username AS sender_name, u2.username AS receiver_name
-            FROM messages m
-            JOIN users u1 ON m.sender_id = u1.user_id
-            JOIN users u2 ON m.receiver_id = u2.user_id
-            WHERE (m.sender_id = ? AND m.receiver_id = ?) OR (m.sender_id = ? AND m.receiver_id = ?)
-            ORDER BY m.sent_at ASC";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$user_id, $receiverId, $receiverId, $user_id]);
-    
-    $messages = [];
-    while ($row = $stmt->fetch()) {
-        $statusDotColor = $row['read_status'] ? 'green' : 'gray';
-        $messageClass = $row['sender_id'] == $user_id ? 'my-message' : 'friend-message';
-        $messages[] = "<div class=\"$messageClass\">
-                         <p>{$row['message']} <span class=\"status-dot\" style=\"background-color: $statusDotColor;\"></span></p>
-                       </div>";
-    }
-    return $messages;
-}
-
-// Insert new message
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['message'])) {
-    $message = $_POST['message'];
-    
-    $sql = "INSERT INTO messages (sender_id, receiver_id, message, read_status) VALUES (?, ?, ?, 0)";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$user_id, $receiverId, $message]);
-    
-    exit; // Exit after inserting the message
-}
-
-// Update message status to read
-if ($receiverId) {
-    $sql = "UPDATE messages SET read_status = 1 WHERE sender_id = ? AND receiver_id = ? AND read_status = 0";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$receiverId, $user_id]);
-}
-
-$conn = null;
+$success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : '';
+$error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : '';
+unset($_SESSION['success_message']);
+unset($_SESSION['error_message']);
 ?>
 
 <!DOCTYPE html>
@@ -59,98 +16,139 @@ $conn = null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Add Idea</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .container { display: flex; height: 100vh; margin: 0; }
-        .sidebar { width: 300px; background: #f4f4f4; padding: 10px; box-sizing: border-box; border-right: 1px solid #ddd; }
-        .chat { flex: 1; display: flex; flex-direction: column; }
-        .chat-messages { flex: 1; overflow-y: auto; border: 1px solid #ddd; padding: 10px; box-sizing: border-box; }
-        .my-message { text-align: right; }
-        .friend-message { text-align: left; }
-        .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-        .message-form { display: flex; padding: 10px; background: #fff; border-top: 1px solid #ddd; box-sizing: border-box; }
-        .message-form textarea { flex: 1; padding: 5px; margin-right: 10px; box-sizing: border-box; }
-        .message-form button { width: 100px; padding: 5px; }
-        .sidebar ul { list-style: none; padding: 0; }
-        .sidebar ul li { margin-bottom: 10px; }
-        .sidebar ul li a { text-decoration: none; color: #007bff; }
-        .sidebar ul li a:hover { text-decoration: underline; }
+        body {
+            background-color: #f4f7f6; /* Light background color */
+        }
+        .navbar {
+            margin-bottom: 30px; /* Space between navbar and content */
+        }
+        .container {
+            background: #ffffff; /* White background for the form container */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #28a745; /* Green background for the button */
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838; /* Darker green on hover */
+            border-color: #1e7e34;
+        }
+        .navbar-nav .nav-link {
+            font-weight: bold;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="sidebar">
-        <?php
-        // Fetch and display friends list
-        require '../dbconnection/dbconnection.php';
-        $conn = new PDO("mysql:host=localhost;dbname=ideas", "root", "");
-        $sql = "SELECT u.user_id, u.username FROM friends f JOIN users u ON f.friend_user_id = u.user_id WHERE f.user_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([$user_id]);
-
-        echo "<h2>Friends</h2>";
-        echo "<ul>";
-        while ($row = $stmt->fetch()) {
-            echo "<li><a href='chat.php?receiver_id={$row['user_id']}'>{$row['username']}</a></li>";
-        }
-        echo "</ul>";
-        ?>
-    </div>
-    <div class="chat">
-        <div id="chat-messages" class="chat-messages">
-            <?php echo implode('', fetchMessages($user_id, $receiverId, $conn)); ?>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-lightbulb"></i> Idea Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="..chat/chat"><i class="fas fa-plus-circle"></i> Add chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manageideas"><i class="fas fa-user-cog"></i> Account Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <form id="message-form" class="message-form" method="post">
-            <textarea name="message" rows="3" placeholder="Type a message..."></textarea>
-            <button type="submit">Send</button>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Add a New Idea</h2>
+        <?php if ($success_message): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $success_message; ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($error_message): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $error_message; ?>
+            </div>
+        <?php endif; ?>
+        <form action="addideaprocessform.php" method="POST">
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-control" id="country" name="country" required>
+                    <option value="">Select a country</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="problem_heading" class="form-label">Problem Name</label>
+                <input type="text" class="form-control" id="problem_heading" name="problem_heading" placeholder="Enter the problem heading" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe the problem in detail" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="possible_solution" class="form-label">Possible Solution</label>
+                <textarea class="form-control" id="possible_solution" name="possible_solution" rows="4" placeholder="Describe possible solutions"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="suggested_tools" class="form-label">Suggested Tools/Development Technologies</label>
+                <textarea class="form-control" id="suggested_tools" name="suggested_tools" rows="4" placeholder="List any suggested tools"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="impact_on_economy" class="form-label">Impact on Economy</label>
+                <textarea class="form-control" id="impact_on_economy" name="impact_on_economy" rows="4" placeholder="Explain the impact on the economy"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="revenue_generation" class="form-label">Revenue Generation Methods</label>
+                <textarea class="form-control" id="revenue_generation" name="revenue_generation" rows="4" placeholder="Describe revenue generation aspects"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="stakeholders" class="form-label">Stakeholders</label>
+                <textarea class="form-control" id="stakeholders" name="stakeholders" rows="4" placeholder="Identify potential stakeholders"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Idea</button>
         </form>
     </div>
-</div>
-<script>
-    // Function to fetch messages
-    function fetchMessages() {
-        fetch('fetch_messages.php?receiver_id=<?php echo $receiverId; ?>')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('chat-messages').innerHTML = data;
-            document.querySelector('.chat-messages').scrollTop = document.querySelector('.chat-messages').scrollHeight;
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const countrySelect = document.getElementById('country');
+
+            fetch('https://restcountries.com/v3.1/all') // Replace with your API endpoint
+                .then(response => response.json())
+                .then(data => {
+                    // Filter African countries
+                    const africanCountries = data.filter(country => country.region === 'Africa');
+
+                    // Populate the select element
+                    africanCountries.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country.name.common;
+                        option.textContent = country.name.common;
+                        countrySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching country data:', error));
         });
-    }
-
-    // Function to notify typing
-    function notifyTyping() {
-        fetch('notify_typing.php?receiver_id=<?php echo $receiverId; ?>', { method: 'POST' });
-    }
-
-    // Handle form submission
-    document.getElementById('message-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-        fetch('chat.php?receiver_id=<?php echo $receiverId; ?>', {
-            method: 'POST',
-            body: formData
-        })
-        .then(() => {
-            document.querySelector('textarea').value = '';
-            fetchMessages();
-        });
-    });
-
-    // Handle typing detection
-    var typingTimeout;
-    document.querySelector('textarea').addEventListener('input', function() {
-        clearTimeout(typingTimeout);
-        notifyTyping();
-        typingTimeout = setTimeout(function() {
-            fetchMessages();
-        }, 5000);
-    });
-
-    // Fetch messages every 5 seconds
-    setInterval(fetchMessages, 5000);
-</script>
-
+    </script>
 </body>
 </html>
