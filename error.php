@@ -46,24 +46,22 @@ switch ($error_code) {
             height: 100vh;
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            background: #f1f1f1;
             color: #333;
             text-align: center;
         }
         .container {
             max-width: 600px;
             padding: 30px;
-            border: 1px solid #ff6f61;
+            border: 1px solid #ccc;
             border-radius: 10px;
             background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-in;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            font-size: 4em;
+        h2 {
+            font-size: 20px;
             margin: 0;
-            color: #ff6f61;
-            animation: textAnimation 2s ease-in-out infinite;
+            color: #e74c3c;
         }
         p {
             font-size: 1.2em;
@@ -73,35 +71,20 @@ switch ($error_code) {
         a {
             text-decoration: none;
             color: #fff;
-            background: #ff6f61;
+            background: #e74c3c;
             padding: 10px 20px;
             border-radius: 5px;
             font-size: 1.1em;
             transition: background 0.3s ease;
         }
         a:hover {
-            background: #ff3f34;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes textAnimation {
-            0% { transform: translateY(-10px); opacity: 0; }
-            50% { transform: translateY(5px); opacity: 1; }
-            100% { transform: translateY(-10px); opacity: 0; }
+            background: #c0392b;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Oops! An Error Occurred</h1>
+        <h2>An Eror Occured Accessing the page</h2>
         <p><?php echo $error_message; ?></p>
         <a href="https://ideasubmissionafrica.wuaze.com">Go to Homepage</a>
     </div>
