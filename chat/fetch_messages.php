@@ -31,18 +31,16 @@ function fetchMessages($user_id, $receiverId, $conn) {
     }
 
     // Check for typing status
-    if ($user_id !== $receiverId) {
-        $typingSql = "SELECT u.username FROM typing_status t
-                      JOIN users u ON t.user_id = u.user_id
-                      WHERE t.receiver_id = ? AND t.typing = 1";
-        $typingStmt = $conn->prepare($typingSql);
-        $typingStmt->execute([$user_id]);
-        $typingUsers = $typingStmt->fetchAll(PDO::FETCH_COLUMN);
+    $typingSql = "SELECT u.username FROM typing_status t
+                  JOIN users u ON t.user_id = u.user_id
+                  WHERE t.receiver_id = ? AND t.typing = 1";
+    $typingStmt = $conn->prepare($typingSql);
+    $typingStmt->execute([$receiverId]);
+    $typingUsers = $typingStmt->fetchAll(PDO::FETCH_COLUMN);
 
-        if ($typingUsers) {
-            $typingMessage = implode(', ', $typingUsers) . " is typing...";
-            $messages[] = "<div class='typing-indicator'>$typingMessage</div>";
-        }
+    if ($typingUsers) {
+        $typingMessage = implode(', ', $typingUsers) . " is typing...";
+        $messages[] = "<div class='typing-indicator'>$typingMessage</div>";
     }
 
     return $messages;
