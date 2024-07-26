@@ -82,9 +82,9 @@ switch ($error_code) {
 </head>
 <body>
     <div class="container">
-        <h1><?php echo $error_code; ?></h1>
+        <h1>Sorry an error Ocurred We working to get thinsg right hang on</h1>
         <p><?php echo $error_message; ?></p>
-        <a href="/">Go to Homepage</a>
+        <a href="https://ideasubmissionafrica.wuaze.com">Go to Homepage</a>
     </div>
 </body>
 </html>
