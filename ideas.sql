@@ -77,4 +77,15 @@ CREATE TABLE friend_requests (
 );
 
 
+-- Create messages table
+CREATE TABLE messages (
+    message_id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    message TEXT NOT NULL,
+    read_status BOOLEAN DEFAULT 0,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
 
