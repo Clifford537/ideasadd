@@ -222,7 +222,17 @@ try {
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h6 class="mb-4"><i class="fas fa-user icon"></i>Hi <?php echo $username; ?>! This platform allows you to write any idea or problem you ever faced or are facing in your country. <i class="fa-solid fa-wand-magic-sparkles" style="color:indigo;"></i></h6>
+        <h6 class="mb-4"><i class="fas fa-user icon"></i>Hi <?php echo $username; ?>! This platform allows you 
+        to write any idea or problem you ever faced or 
+        are facing in your country. <i class="fa-solid fa-wand-magic-sparkles" style="color:indigo;"></i></h6>
+        <div>
+        <li class="nav-item">
+                        <a class="nav-link" href="../chat/friends"><i class="fas fa-cogs"></i> chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../chat/chat"><i class="fas fa-cogs"></i> chatroom</a>
+                    </li>
+        </div>
         <?php if (isset($error_message)): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo htmlspecialchars($error_message); ?>
