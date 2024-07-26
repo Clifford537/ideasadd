@@ -230,7 +230,7 @@ try {
                         <a class="nav-link" href="../chat/friends"><i class="fas fa-cogs"></i> chat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../message/message"><i class="fas fa-cogs"></i> chatroom</a>
+                        <a class="nav-link" href="../message/message.html"><i class="fas fa-cogs"></i> chatroom</a>
                     </li>
         </div>
         <?php if (isset($error_message)): ?>
