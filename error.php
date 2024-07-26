@@ -45,44 +45,63 @@ switch ($error_code) {
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #e0f7fa;
-            color: #00796b;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            color: #333;
             text-align: center;
         }
         .container {
             max-width: 600px;
-            padding: 20px;
-            border: 1px solid #00796b;
+            padding: 30px;
+            border: 1px solid #ff6f61;
             border-radius: 10px;
-            background: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in;
         }
         h1 {
-            font-size: 6em;
+            font-size: 4em;
             margin: 0;
+            color: #ff6f61;
+            animation: textAnimation 2s ease-in-out infinite;
         }
         p {
-            font-size: 1.5em;
+            font-size: 1.2em;
             margin: 20px 0;
+            color: #555;
         }
         a {
             text-decoration: none;
-            color: #ffffff;
-            background: #00796b;
+            color: #fff;
+            background: #ff6f61;
             padding: 10px 20px;
             border-radius: 5px;
-            font-size: 1.2em;
+            font-size: 1.1em;
             transition: background 0.3s ease;
         }
         a:hover {
-            background: #004d40;
+            background: #ff3f34;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes textAnimation {
+            0% { transform: translateY(-10px); opacity: 0; }
+            50% { transform: translateY(5px); opacity: 1; }
+            100% { transform: translateY(-10px); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Sorry an error Ocurred We working to get thinsg right hang on</h1>
+        <h1>Oops! An Error Occurred</h1>
         <p><?php echo $error_message; ?></p>
         <a href="https://ideasubmissionafrica.wuaze.com">Go to Homepage</a>
     </div>
