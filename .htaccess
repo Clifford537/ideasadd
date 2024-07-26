@@ -14,9 +14,3 @@ RewriteRule ^index$ index.php [L]
 # Prevent directory indexing
 Options -Indexes
 
-ErrorDocument 400 /error?error=400
-ErrorDocument 401 /error?error=401
-ErrorDocument 403 /error?error=403
-ErrorDocument 404 /error?error=404
-ErrorDocument 500 /error?error=500
-ErrorDocument 503 /error?error=503

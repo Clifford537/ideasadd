@@ -77,16 +77,4 @@ CREATE TABLE friend_requests (
 );
 
 
--- Create messages table
-CREATE TABLE messages (
-    message_id INT AUTO_INCREMENT PRIMARY KEY,
-    sender_id INT NOT NULL,
-    receiver_id INT NOT NULL,
-    message TEXT NOT NULL,
-    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    read_status TINYINT(1) DEFAULT 0,
-    FOREIGN KEY (sender_id) REFERENCES users(user_id),
-    FOREIGN KEY (receiver_id) REFERENCES users(user_id)
-);
-
 
