@@ -195,7 +195,7 @@ function displayFriends($currentUserId, $conn) {
 
         function sendFriendRequest(receiverId) {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "friendprocess.php?action=send&receiver_id=" + receiverId, true);
+            xhr.open("GET", "friendprocess?action=send&receiver_id=" + receiverId, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     showModal(xhr.responseText);
