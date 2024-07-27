@@ -111,7 +111,7 @@ function displayFriends($currentUserId, $conn) {
         echo "<td>{$row['username']}</td>";
         echo "<td>
                 <a href='meandyou.php?user_id={$row['user_id']}'>Chat</a> |
-                <a href='friendprocess.php?action=unfriend&friend_id={$row['user_id']}' onclick='return confirm(\"Are you sure you want to unfriend this user?\");'>Unfriend</a>
+                <a href='friendprocess?action=unfriend&friend_id={$row['user_id']}' onclick='return confirm(\"Are you sure you want to unfriend this user?\");'>Unfriend</a>
               </td>";
         echo "</tr>";
     }
