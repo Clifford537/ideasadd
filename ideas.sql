@@ -76,7 +76,6 @@ CREATE TABLE friend_requests (
     FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-
 -- Create messages table
 CREATE TABLE messages (
     message_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -88,6 +87,7 @@ CREATE TABLE messages (
     FOREIGN KEY (sender_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE typing_status (
     user_id INT NOT NULL,
