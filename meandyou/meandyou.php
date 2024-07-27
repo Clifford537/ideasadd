@@ -83,40 +83,7 @@ function displayFriends($currentUserId, $conn) {
 <html>
 <head>
     <title>Chat</title>
-    <style>
-        .container {
-            display: flex;
-            justify-content: space-between;
-        }
-        .sidebar {
-            width: 30%;
-            border-right: 1px solid #ccc;
-            padding: 10px;
-        }
-        .chat {
-            width: 65%;
-            padding: 10px;
-        }
-        .messages {
-            border: 1px solid #ccc;
-            padding: 10px;
-            height: 300px;
-            overflow-y: scroll;
-        }
-        .message {
-            margin-bottom: 10px;
-        }
-        .message.sent {
-            text-align: right;
-        }
-        .message.received {
-            text-align: left;
-        }
-        textarea {
-            width: 100%;
-            padding: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">

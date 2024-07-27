@@ -97,3 +97,4 @@ CREATE TABLE typing_status (
     FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE,
     PRIMARY KEY (user_id, receiver_id)
 );
+ALTER TABLE messages ADD COLUMN file_path VARCHAR(255) AFTER message;
